@@ -17,11 +17,19 @@ Installationa_and_setting_up
 - during the first boot I've set up the time and a regular user for myself
 - now that I've entered desktop first I’ll patch CentOS and install/configure the Firewall, Shorewall in this case, by entering the terminal and becoming root since I need to be root to enter the following commands.
 
+First the update
 ```
 
 su root
 ~~enter password~~
 yum update
 ~~this will update all services and when prompted to, type in y as for yes~~
+
+```
+
+Now Shorewall (for simplicity reasons I won't write ''su root'' every time)
+```
+
+yum install shorewall
 
 ```
