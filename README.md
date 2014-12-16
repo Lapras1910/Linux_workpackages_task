@@ -245,9 +245,25 @@ make
 make altinstall
 cd ..
 ```
-
-- first we'll instal pip which is the preferred installer program for Python
+- now for virtualenv for both versions of Python
 ```
-yum -y install python-pip 
+mkdir ~/src
+cd ~/src
+wget http://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.5.2.tar.gz#md5=fbcefbd8520bb64bc24a560c6019a73c
+tar -zxvf virtualenv-1.5.2.tar.gz
+cd virtualenv-1.5.2/
+~/.localpython/bin/python setup.py install
+virtualenv ve -p /home/Ivan/.localpython/bin/python2.7
+source ve/bin/activate
 
+tar -zxvf virtualenv-1.5.2.tar.gz
+cd virtualenv-1.5.2/
+~/.localpython/bin/python setup.py install
+virtualenv ve -p /home/Ivan/.localpython/bin/python3.4
+source ve/bin/activate
+```
+
+-now for virtualenvwrapper
+```
+pip install virtualenvwrapper
 ```
