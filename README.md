@@ -145,6 +145,51 @@ ssh root@cnode01 'yum install openssh-clients'
 ssh cnode01
 
 ```
+- next I'll install and configure shorewall
+```
+yum install shorewall -y
+
+```
+- now i'll configure the zones
+```
+nano /etc/shorewall/zones
+~~update to~~
+fw	firewall
+wan	ipv4
+lan	ipv4
+~~save changes~~
+```
+- now for the interfaces
+```
+nano /etc/shorewall/interfaces
+~~update to~~
+wan	eth1	-	routefilter,blacklis,tcpflags,logmartians,nosmurfs
+lan	eth0
+~~save changes~~
+```
+- now policy
+```
+nano /etc/shorewall/policy
+~~update to~~
+## allow lan to all and firewall to all (outgoing to internet) but no traffic from wan/internet to lan or firewall itself
+lan     all     ACCEPT
+$FW     all     ACCEPT
+wan     all     DROP    info
+# this must be last rule
+all     all     REJECT  info
+~~save changes~~
+```
+- now that I have set the policy to drop all wan connections,  and I need some exceptions to make use of SSH
+```
+nano /etc/shorewall/rules
+~~update to~~
+ ACTION SOURCE	DEST	PROTO	DEST	
+						PORT(s)
+ACCEPT	wan	$FW	tcp		22
+~~save changes~~
+```
+
+
 
 WORKPACKAGE 1: Mail Server
 ========================
