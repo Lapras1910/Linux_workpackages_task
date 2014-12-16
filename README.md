@@ -100,7 +100,43 @@ logpath  = /var/log/secure
 maxretry = 5
 ~~save changes~~
 ```
+```
+- now to setup public key authentication
+```
+[root@centhost ~]# ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/root/.ssh/id_rsa): 
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /root/.ssh/id_rsa.
+Your public key has been saved in /root/.ssh/id_rsa.pub.
+The key fingerprint is:
+d4:a6:4f:31:49:c9:87:b8:ef:55:e7:2b:ab:31:20:1c root@centhost
+The key's randomart image is:
++--[ RSA 2048]----+
+|         o.o     |
+|        .o+..    |
+|       E..*.     |
+|      ..oo o  . .|
+|       oSo.  . o |
+|        .oo .   .|
+|         ..+    .|
+|          . o. . |
+|           ...o  |
++-----------------+ 
+~~image got slightly messed up during c-p~~
+```
+- now I'll tighten up file system permission
+```
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/*
+```
+- now I'll copy the public key to the machine I want to SSH and fix permissions
 
+```
+ssh root@cnode01 'mkdir -p /root/ssh'
+scp /root/.ssh/id_rsa.pub root@cnode01:/root/.ssh/authorized_keys
+ssh root@cnode01 'chmod 700 /root/.ssh'
+ssh root@cnode01 'chmod 600 /root/.ssh/*'
 
-
-
+```
