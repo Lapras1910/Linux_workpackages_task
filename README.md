@@ -100,7 +100,7 @@ logpath  = /var/log/secure
 maxretry = 5
 ~~save changes~~
 ```
-```
+
 - now to setup public key authentication
 ```
 [root@centhost ~]# ssh-keygen
