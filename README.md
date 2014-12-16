@@ -184,9 +184,34 @@ all     all     REJECT  info
 nano /etc/shorewall/rules
 ~~update to~~
  ACTION SOURCE	DEST	PROTO	DEST	
-				PORT(s)
-ACCEPT	wan	$FW	tcp	22
+						PORT(s)
+ACCEPT	wan	$FW	tcp		22
 ~~save changes~~
+```
+- now that SSH goes trough shorewall I'm free to adjust the rules later on should the situation demand more exceptions
+- now for the black list, shorewall checks incoming packages against the /etc/shorewall/blacklist filewhich is used to perform static blacklisting by source adress( IP or MAC), or by applicationŽ
+```
+nano /etc/shorewall/blacklist
+~~example blacklist entry~~
+173.252.120.6
+199.16.156.230
+~~save changes~~
+```
+- now we need to enable shorewall on startup and check for errors
+```
+nano /etc/shorewall/shorewall.conf
+~~update to~~
+STARTUP_ENABLED=Yes
+~~save changes~~
+shorewall check
+```
+- if no errors come up I only have to save existing firewall rules and disable iptables service
+```
+
+service iptables save
+service iptables stop
+
+chkconfig iptables off
 ```
 
 
