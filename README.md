@@ -100,7 +100,6 @@ logpath  = /var/log/secure
 maxretry = 5
 ~~save changes~~
 ```
-
 - now to setup public key authentication
 ```
 [root@centhost ~]# ssh-keygen
@@ -140,3 +139,12 @@ ssh root@cnode01 'chmod 700 /root/.ssh'
 ssh root@cnode01 'chmod 600 /root/.ssh/*'
 
 ```
+- now I only need to install scp on the remote machine and I'm good to go
+```
+ssh root@cnode01 'yum install openssh-clients'
+ssh cnode01
+
+```
+
+WORKPACKAGE 1: Mail Server
+========================
