@@ -184,8 +184,8 @@ all     all     REJECT  info
 nano /etc/shorewall/rules
 ~~update to~~
  ACTION SOURCE	DEST	PROTO	DEST	
-						PORT(s)
-ACCEPT	wan	$FW	tcp		22
+				PORT(s)
+ACCEPT	wan	$FW	tcp	22
 ~~save changes~~
 ```
 
