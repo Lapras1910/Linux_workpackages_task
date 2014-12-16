@@ -215,3 +215,39 @@ iptables-save > /root/old.firewall.config
 
 WORKPACKAGE 1: Mail Server
 ========================
+
+
+
+WORKPACKAGE 2: Application Server
+=============================
+-I'll start by getting all the needed software, since CentOS comes with Python 2.6 I'll get Python 3.4 and 2.7 first
+- In order to compile Python I must first install the development tools 
+```
+yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel
+```
+-now the installation of Phyton 3.4
+```
+wget http://python.org/ftp/python/3.4.0/Python-3.4.0.tar.xz
+tar xf Python-3.4.0.tar.xz
+cd Python-3.4.0
+./configure --prefix=/usr/local --enable-shared LDFLAGS="-Wl,-rpath /usr/local/lib"
+make
+make altinstall
+cd ..
+```
+-now the installation off Python 2.7
+```
+wget http://python.org/ftp/python/2.7.0/Python-2.7.0.tar.xz
+tar xf Python-2.7.0.tar.xz
+cd Python-2.7.0
+./configure --prefix=/usr/local --enable-unicode=ucs4 --enable-shared LDFLAGS="-Wl,-rpath /usr/local/lib"
+make
+make altinstall
+cd ..
+```
+
+- first we'll instal pip which is the preferred installer program for Python
+```
+yum -y install python-pip 
+
+```
