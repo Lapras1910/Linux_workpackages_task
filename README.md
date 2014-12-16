@@ -205,13 +205,10 @@ STARTUP_ENABLED=Yes
 ~~save changes~~
 shorewall check
 ```
-- if no errors come up I only have to save existing firewall rules and disable iptables service
+- if no errors come up I only have to save existing firewall rules 
 ```
 
-service iptables save
-service iptables stop
-
-chkconfig iptables off
+iptables-save > /root/old.firewall.config
 ```
 
 
