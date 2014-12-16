@@ -85,8 +85,22 @@ Findtime = 600
 
 # "maxretry" is the number of failures before a host get banned.
 maxretry = 3
-~~save changes~~
 
 ```
+- 10.0.2.15/24 is my IPv4 adress so i added it the exceptions and I also extended the ban time to 3600 seconds
+```
+
+[ssh-iptables]
+
+enabled  = true
+filter   = sshd
+action   = iptables[name=SSH, port=ssh, protocol=tcp]
+           sendmail-whois[name=SSH, dest=root, sender=fail2ban@example.com]
+logpath  = /var/log/secure
+maxretry = 5
+~~save changes~~
+```
+
+
 
 
